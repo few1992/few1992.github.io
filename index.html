@@ -16,8 +16,31 @@
     <link href="css/styles.css" rel="stylesheet" type="text/css" />
     <link href="css/demo.css" rel="stylesheet" type="text/css" />
     <link href="css/loaders.css" rel="stylesheet" type="text/css" />
+    <style>
+        .lunbo {
+            width: 100%;
+            height: 100%;
+            /*background: #ccc;*/
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+        .lunbo img {
+            width: 100%;
+            height: 100%;
+            display: none;
+        }
+    </style>
 </head>
 <body>
+    <div class="lunbo">
+        <img src="img/bg1.jpg" alt=""/>
+        <img src="img/bg2.jpg" alt=""/>
+        <img src="img/bg3.jpg" alt=""/>
+        <img src="img/bg4.jpg" alt=""/>
+        <img src="img/bg5.jpg" alt=""/>
+    </div>
 	<div class='login'>
 	  <div class='login_title'>
 	    <span>登录</span>
@@ -82,12 +105,20 @@
 
         var bgImg = ["bg1","bg2","bg3","bg4","bg5"];
         var step = 0;
+        $(".lunbo img").eq(step).fadeIn("fast");
 
         setInterval(function(){
-            var url = $("body").css("backgroundImage");
-            step = step + 1;
-            $("body").css({"backgroundImage":"url(img/" + bgImg[step % 5] + ".jpg)"});
-        },3000);
+//            var url = $("body").css("backgroundImage");
+            step = step%4;
+//            $("body").css({"backgroundImage":"url(img/" + bgImg[step % 5] + ".jpg)"});
+
+
+            $(".lunbo img").fadeOut("fast");
+            $(".lunbo img").eq(step).fadeIn("fast");
+
+            step++;
+            console.log(step)
+        },5000);
 
 
 
