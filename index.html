@@ -108,21 +108,12 @@
         $(".lunbo img").eq(step).fadeIn("fast");
 
         setInterval(function(){
-//            var url = $("body").css("backgroundImage");
             step = step%4;
-//            $("body").css({"backgroundImage":"url(img/" + bgImg[step % 5] + ".jpg)"});
-
-
             $(".lunbo img").fadeOut("fast");
             $(".lunbo img").eq(step).fadeIn("fast");
 
             step++;
-            console.log(step)
         },5000);
-
-
-
-
 
 
 
@@ -207,22 +198,10 @@
 	                ErroAlert('输入验证码');
 	            } else {
 	                //认证中..
-	                fullscreen();
 	                $('.login').addClass('test'); //倾斜特效
 	                setTimeout(function () {
 	                    $('.login').addClass('testtwo'); //平移特效
 	                }, 300);
-	                setTimeout(function () {
-	                    $('.authent').show().animate({ right: -320 }, {
-	                        easing: 'easeOutQuint',
-	                        duration: 600,
-	                        queue: false
-	                    });
-	                    $('.authent').animate({ opacity: 1 }, {
-	                        duration: 200,
-	                        queue: false
-	                    }).addClass('visible');
-	                }, 500);
 
 	                //登陆
 	                var JsonData = { login: login, pwd: pwd, code: code };
@@ -243,27 +222,12 @@
 	                                    //ajax返回
 	                                    //认证完成
 	                                    setTimeout(function () {
-	                                        $('.authent').show().animate({ right: 90 }, {
-	                                            easing: 'easeOutQuint',
-	                                            duration: 600,
-	                                            queue: false
-	                                        });
-	                                        $('.authent').animate({ opacity: 0 }, {
-	                                            duration: 200,
-	                                            queue: false
-	                                        }).addClass('visible');
-	                                        $('.login').removeClass('testtwo'); //平移特效
-	                                    }, 2000);
-	                                    setTimeout(function () {
 	                                        $('.authent').hide();
 	                                        $('.login').removeClass('test');
 	                                        if (data.Status == 'ok') {
 	                                            //登录成功
-	                                            $('.login div').fadeOut(100);
-	                                            $('.success').fadeIn(1000);
-	                                            $('.success').html(data.Text);
 												//跳转操作
-
+                                                window.location.href="distIndex.html";
 	                                        } else {
 	                                            AjaxErro(data);
 	                                        }
@@ -271,19 +235,8 @@
 	                                })
 	            }
 	        })
-	    })
-	    var fullscreen = function () {
-	        elem = document.body;
-	        if (elem.webkitRequestFullScreen) {
-	            elem.webkitRequestFullScreen();
-	        } else if (elem.mozRequestFullScreen) {
-	            elem.mozRequestFullScreen();
-	        } else if (elem.requestFullScreen) {
-	            elem.requestFullscreen();
-	        } else {
-	            //浏览器不支持全屏API或已被禁用  
-	        }
-	    }  
+	    });
+
 		if(ajaxmockjax == 1){
 			$.mockjax({  
 				url: 'Ajax/Login',  
